@@ -1,0 +1,593 @@
+{
+  "format": "pencil-mcp",
+  "version": "1.0.0",
+  "project": {
+    "name": "人像优化-移动端UI",
+    "device": {
+      "platform": "iOS",
+      "width": 375,
+      "height": 812
+    },
+    "theme": {
+      "primary": "#FF6B6B",
+      "surface": "#FFFFFF",
+      "background": "#F5F6F8",
+      "textPrimary": "#1F2937",
+      "textSecondary": "#6B7280",
+      "border": "#E5E7EB",
+      "radius": 12,
+      "shadow": {
+        "x": 0,
+        "y": 6,
+        "blur": 18,
+        "spread": 0,
+        "color": "rgba(17,24,39,0.12)"
+      }
+    },
+    "iconStyle": "lucide"
+  },
+  "screens": [
+    {
+      "id": "home",
+      "name": "首页",
+      "size": {
+        "width": 375,
+        "height": 812
+      },
+      "backgroundColor": "#F5F6F8",
+      "layers": [
+        {
+          "type": "text",
+          "id": "home-title",
+          "x": 0,
+          "y": 60,
+          "width": 375,
+          "height": 36,
+          "text": "人像优化",
+          "fontSize": 30,
+          "fontWeight": 700,
+          "lineHeight": 36,
+          "color": "#FF6B6B",
+          "align": "center"
+        },
+        {
+          "type": "button",
+          "id": "select-photo",
+          "x": 35,
+          "y": 323,
+          "width": 305,
+          "height": 64,
+          "radius": 12,
+          "backgroundColor": "#FF6B6B",
+          "shadow": {
+            "x": 0,
+            "y": 6,
+            "blur": 18,
+            "spread": 0,
+            "color": "rgba(17,24,39,0.12)"
+          },
+          "icon": {
+            "name": "plus",
+            "style": "lucide",
+            "size": 22,
+            "color": "#FFFFFF"
+          },
+          "text": "+ 从相册选择照片",
+          "fontSize": 18,
+          "fontWeight": 600,
+          "textColor": "#FFFFFF"
+        },
+        {
+          "type": "tabbar",
+          "id": "home-tabbar",
+          "x": 16,
+          "y": 732,
+          "width": 343,
+          "height": 64,
+          "radius": 12,
+          "backgroundColor": "#FFFFFF",
+          "shadow": {
+            "x": 0,
+            "y": 6,
+            "blur": 18,
+            "spread": 0,
+            "color": "rgba(17,24,39,0.12)"
+          },
+          "items": [
+            {
+              "label": "首页",
+              "icon": "house",
+              "active": true
+            },
+            {
+              "label": "编辑",
+              "icon": "sliders-horizontal",
+              "active": false
+            },
+            {
+              "label": "我的",
+              "icon": "user-round",
+              "active": false
+            }
+          ],
+          "activeColor": "#FF6B6B",
+          "inactiveColor": "#9CA3AF",
+          "textSize": 12
+        }
+      ]
+    },
+    {
+      "id": "editor",
+      "name": "编辑页",
+      "size": {
+        "width": 375,
+        "height": 812
+      },
+      "backgroundColor": "#F5F6F8",
+      "layers": [
+        {
+          "type": "toolbar",
+          "id": "editor-toolbar",
+          "x": 16,
+          "y": 44,
+          "width": 343,
+          "height": 56,
+          "radius": 12,
+          "backgroundColor": "#FFFFFF",
+          "shadow": {
+            "x": 0,
+            "y": 6,
+            "blur": 18,
+            "spread": 0,
+            "color": "rgba(17,24,39,0.12)"
+          },
+          "items": [
+            {
+              "id": "back",
+              "icon": "arrow-left",
+              "label": "返回",
+              "color": "#1F2937"
+            },
+            {
+              "id": "undo",
+              "icon": "undo-2",
+              "label": "撤销",
+              "color": "#1F2937"
+            },
+            {
+              "id": "redo",
+              "icon": "redo-2",
+              "label": "重做",
+              "color": "#1F2937"
+            },
+            {
+              "id": "save",
+              "icon": "save",
+              "label": "保存",
+              "color": "#FF6B6B",
+              "metadata": {
+                "interaction": {
+                  "onClick": {
+                    "type": "state-transition",
+                    "states": [
+                      {
+                        "label": "保存",
+                        "icon": "save"
+                      },
+                      {
+                        "label": "✓ 已保存",
+                        "icon": "check"
+                      }
+                    ],
+                    "transition": [
+                      {
+                        "from": "保存",
+                        "to": "✓ 已保存",
+                        "trigger": "click"
+                      },
+                      {
+                        "from": "✓ 已保存",
+                        "to": "保存",
+                        "trigger": "timeout",
+                        "delayMs": 2000
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "image-preview",
+          "id": "photo-preview",
+          "x": 16,
+          "y": 112,
+          "width": 343,
+          "height": 568,
+          "ratioOfScreen": 0.7,
+          "radius": 12,
+          "backgroundColor": "#FFFFFF",
+          "borderColor": "#E5E7EB",
+          "borderWidth": 1,
+          "shadow": {
+            "x": 0,
+            "y": 6,
+            "blur": 18,
+            "spread": 0,
+            "color": "rgba(17,24,39,0.12)"
+          },
+          "placeholder": "图片预览区 70%"
+        },
+        {
+          "type": "function-panel",
+          "id": "function-scroll",
+          "x": 0,
+          "y": 692,
+          "width": 375,
+          "height": 120,
+          "backgroundColor": "#FFFFFF",
+          "shadow": {
+            "x": 0,
+            "y": -6,
+            "blur": 18,
+            "spread": 0,
+            "color": "rgba(17,24,39,0.10)"
+          },
+          "scrollDirection": "horizontal",
+          "items": [
+            {
+              "label": "滤镜",
+              "icon": "sparkles",
+              "active": true
+            },
+            {
+              "label": "美颜",
+              "icon": "wand-sparkles",
+              "active": false
+            },
+            {
+              "label": "贴纸",
+              "icon": "sticker",
+              "active": false
+            },
+            {
+              "label": "文字",
+              "icon": "type",
+              "active": false
+            },
+            {
+              "label": "裁剪",
+              "icon": "crop",
+              "active": false
+            }
+          ],
+          "activeColor": "#FF6B6B",
+          "inactiveColor": "#9CA3AF",
+          "metadata": {
+            "stickerInteraction": {
+              "panel": "sticker-panel-sheet",
+              "openTrigger": "click:贴纸",
+              "dragBehavior": {
+                "gesture": "long-press",
+                "action": "drag-to-image",
+                "dropTarget": "photo-preview"
+              }
+            }
+          }
+        },
+        {
+          "type": "sheet",
+          "id": "beauty-slider-sheet",
+          "trigger": "click:美颜",
+          "visible": false,
+          "x": 16,
+          "y": 488,
+          "width": 343,
+          "height": 192,
+          "radius": 12,
+          "backgroundColor": "#FFFFFF",
+          "shadow": {
+            "x": 0,
+            "y": 6,
+            "blur": 18,
+            "spread": 0,
+            "color": "rgba(17,24,39,0.12)"
+          },
+          "metadata": {
+            "supportsRealtimePreview": true,
+            "previewTarget": "photo-preview",
+            "slideInteraction": "支持实时预览"
+          },
+          "sliders": [
+            {
+              "name": "磨皮",
+              "value": 65,
+              "min": 0,
+              "max": 100,
+              "trackColor": "#F1F5F9",
+              "activeColor": "#FF6B6B"
+            },
+            {
+              "name": "瘦脸",
+              "value": 42,
+              "min": 0,
+              "max": 100,
+              "trackColor": "#F1F5F9",
+              "activeColor": "#FF6B6B"
+            },
+            {
+              "name": "大眼",
+              "value": 53,
+              "min": 0,
+              "max": 100,
+              "trackColor": "#F1F5F9",
+              "activeColor": "#FF6B6B"
+            }
+          ]
+        },
+        {
+          "type": "sheet",
+          "id": "filter-picker-sheet",
+          "trigger": "click:滤镜",
+          "visible": true,
+          "width": 343,
+          "height": 192,
+          "radius": 12,
+          "backgroundColor": "#FFFFFF",
+          "shadow": {
+            "x": 0,
+            "y": 6,
+            "blur": 18,
+            "spread": 0,
+            "color": "rgba(17,24,39,0.12)"
+          },
+          "layout": {
+            "direction": "vertical",
+            "padding": 12,
+            "gap": 12
+          },
+          "sections": [
+            {
+              "type": "thumbnail-list",
+              "id": "filter-thumbnail-list",
+              "scrollDirection": "horizontal",
+              "layout": {
+                "direction": "horizontal",
+                "gap": 10
+              },
+              "itemWidth": 88,
+              "itemHeight": 120,
+              "items": [
+                {
+                  "name": "清新",
+                  "selected": true,
+                  "borderColor": "#FF6B6B",
+                  "borderWidth": 2,
+                  "radius": 10,
+                  "layout": {
+                    "direction": "vertical",
+                    "gap": 8
+                  },
+                  "preview": {
+                    "type": "before-after",
+                    "beforeLabel": "原图",
+                    "afterLabel": "清新"
+                  },
+                  "caption": {
+                    "text": "清新",
+                    "fontSize": 12,
+                    "fontWeight": 500,
+                    "color": "#1F2937",
+                    "align": "center"
+                  },
+                  "interaction": {
+                    "onClick": "preview:photo-preview",
+                    "applyFilter": "清新",
+                    "realtime": true
+                  }
+                },
+                {
+                  "name": "复古",
+                  "selected": false,
+                  "borderColor": "#E5E7EB",
+                  "borderWidth": 1,
+                  "radius": 10,
+                  "layout": {
+                    "direction": "vertical",
+                    "gap": 8
+                  },
+                  "preview": {
+                    "type": "before-after",
+                    "beforeLabel": "原图",
+                    "afterLabel": "复古"
+                  },
+                  "caption": {
+                    "text": "复古",
+                    "fontSize": 12,
+                    "fontWeight": 500,
+                    "color": "#1F2937",
+                    "align": "center"
+                  },
+                  "interaction": {
+                    "onClick": "preview:photo-preview",
+                    "applyFilter": "复古",
+                    "realtime": true
+                  }
+                },
+                {
+                  "name": "胶片",
+                  "selected": false,
+                  "borderColor": "#E5E7EB",
+                  "borderWidth": 1,
+                  "radius": 10,
+                  "layout": {
+                    "direction": "vertical",
+                    "gap": 8
+                  },
+                  "preview": {
+                    "type": "before-after",
+                    "beforeLabel": "原图",
+                    "afterLabel": "胶片"
+                  },
+                  "caption": {
+                    "text": "胶片",
+                    "fontSize": 12,
+                    "fontWeight": 500,
+                    "color": "#1F2937",
+                    "align": "center"
+                  },
+                  "interaction": {
+                    "onClick": "preview:photo-preview",
+                    "applyFilter": "胶片",
+                    "realtime": true
+                  }
+                },
+                {
+                  "name": "柔焦",
+                  "selected": false,
+                  "borderColor": "#E5E7EB",
+                  "borderWidth": 1,
+                  "radius": 10,
+                  "layout": {
+                    "direction": "vertical",
+                    "gap": 8
+                  },
+                  "preview": {
+                    "type": "before-after",
+                    "beforeLabel": "原图",
+                    "afterLabel": "柔焦"
+                  },
+                  "caption": {
+                    "text": "柔焦",
+                    "fontSize": 12,
+                    "fontWeight": 500,
+                    "color": "#1F2937",
+                    "align": "center"
+                  },
+                  "interaction": {
+                    "onClick": "preview:photo-preview",
+                    "applyFilter": "柔焦",
+                    "realtime": true
+                  }
+                },
+                {
+                  "name": "黑白",
+                  "selected": false,
+                  "borderColor": "#E5E7EB",
+                  "borderWidth": 1,
+                  "radius": 10,
+                  "layout": {
+                    "direction": "vertical",
+                    "gap": 8
+                  },
+                  "preview": {
+                    "type": "before-after",
+                    "beforeLabel": "原图",
+                    "afterLabel": "黑白"
+                  },
+                  "caption": {
+                    "text": "黑白",
+                    "fontSize": 12,
+                    "fontWeight": 500,
+                    "color": "#1F2937",
+                    "align": "center"
+                  },
+                  "interaction": {
+                    "onClick": "preview:photo-preview",
+                    "applyFilter": "黑白",
+                    "realtime": true
+                  }
+                },
+                {
+                  "name": "暖阳",
+                  "selected": false,
+                  "borderColor": "#E5E7EB",
+                  "borderWidth": 1,
+                  "radius": 10,
+                  "layout": {
+                    "direction": "vertical",
+                    "gap": 8
+                  },
+                  "preview": {
+                    "type": "before-after",
+                    "beforeLabel": "原图",
+                    "afterLabel": "暖阳"
+                  },
+                  "caption": {
+                    "text": "暖阳",
+                    "fontSize": 12,
+                    "fontWeight": 500,
+                    "color": "#1F2937",
+                    "align": "center"
+                  },
+                  "interaction": {
+                    "onClick": "preview:photo-preview",
+                    "applyFilter": "暖阳",
+                    "realtime": true
+                  }
+                },
+                {
+                  "name": "青橙",
+                  "selected": false,
+                  "borderColor": "#E5E7EB",
+                  "borderWidth": 1,
+                  "radius": 10,
+                  "layout": {
+                    "direction": "vertical",
+                    "gap": 8
+                  },
+                  "preview": {
+                    "type": "before-after",
+                    "beforeLabel": "原图",
+                    "afterLabel": "青橙"
+                  },
+                  "caption": {
+                    "text": "青橙",
+                    "fontSize": 12,
+                    "fontWeight": 500,
+                    "color": "#1F2937",
+                    "align": "center"
+                  },
+                  "interaction": {
+                    "onClick": "preview:photo-preview",
+                    "applyFilter": "青橙",
+                    "realtime": true
+                  }
+                },
+                {
+                  "name": "日系",
+                  "selected": false,
+                  "borderColor": "#E5E7EB",
+                  "borderWidth": 1,
+                  "radius": 10,
+                  "layout": {
+                    "direction": "vertical",
+                    "gap": 8
+                  },
+                  "preview": {
+                    "type": "before-after",
+                    "beforeLabel": "原图",
+                    "afterLabel": "日系"
+                  },
+                  "caption": {
+                    "text": "日系",
+                    "fontSize": 12,
+                    "fontWeight": 500,
+                    "color": "#1F2937",
+                    "align": "center"
+                  },
+                  "interaction": {
+                    "onClick": "preview:photo-preview",
+                    "applyFilter": "日系",
+                    "realtime": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
